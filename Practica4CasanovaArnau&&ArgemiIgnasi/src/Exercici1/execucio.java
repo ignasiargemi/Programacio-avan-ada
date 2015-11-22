@@ -5,9 +5,9 @@ import java.util.Scanner;
 public class execucio {
 	public static void main(String args[]) throws Exception{
 		
-		//IntroducciÃ³ de les dades aleatoriament
+		//Introducció de les dades aleatoriament
 		String[] inici = {"Barcelona","Granollers", "l'Ametlla","Tarragona", "Lleida", "Vic","Vielha"};
-		String[] fi = {"Girona","MatarÃ³", "la Garriga","Badalona", "la Roca", "Canovelles","Ripoll"};
+		String[] fi = {"Girona","Mataró", "la Garriga","Badalona", "la Roca", "Canovelles","Ripoll"};
 		String ciutatOrigen = inici[(int) Math.floor(Math.random()*inici.length)];
 		String ciutatDesti = fi[(int) Math.floor(Math.random()*fi.length)];
 		int kmEntreCiutats = (int) Math.floor(Math.random()*1000+1);
@@ -15,7 +15,7 @@ public class execucio {
 		int nombreGasolineras = (int) Math.floor(Math.random()*60+1);
 		int kmEntreGasolineras = (int) Math.floor(Math.random()*50+1);
 		
-		//Inici de l'excecuciÃ³
+		//Inici de l'excecució
 		System.out.println("Vols introduir les dades? [SI/NO]");
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);

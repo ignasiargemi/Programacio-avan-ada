@@ -13,62 +13,50 @@ public class TecnicaVorac {
 		this.kmCotxeDipositPle = kmDip;
 		this.kmEntreCiutats = kmC;
 	}
-	
 
 	public String getCiutatOrigen() {
 		return ciutatOrigen;
 	}
 
-
 	public void setCiutatOrigen(String ciutatOrigen) {
 		this.ciutatOrigen = ciutatOrigen;
 	}
-
 
 	public String getCiutatDesti() {
 		return ciutatDesti;
 	}
 
-
 	public void setCiutatDesti(String ciutatDesti) {
 		this.ciutatDesti = ciutatDesti;
 	}
-
 
 	public int getKmEntreCiutats() {
 		return kmEntreCiutats;
 	}
 
-
 	public void setKmEntreCiutats(int kmEntreCiutats) {
 		this.kmEntreCiutats = kmEntreCiutats;
 	}
-
 
 	public int getkmEntreGasolineres() {
 		return kmEntreGasolineres;
 	}
 
-
 	public void setkmEntreGasolineres(int kmEntreGasolineres) {
 		this.kmEntreGasolineres = kmEntreGasolineres;
 	}
-
 
 	public int getnombreGasolineres() {
 		return nombreGasolineres;
 	}
 
-
 	public void setnombreGasolineres(int nombreGasolineres) {
 		this.nombreGasolineres = nombreGasolineres;
 	}
 
-
 	public int getKmCotxeDipositPle() {
 		return kmCotxeDipositPle;
 	}
-
 
 	public void setKmCotxeDipositPle(int kmCotxeDipositPle) {
 		this.kmCotxeDipositPle = kmCotxeDipositPle;
@@ -80,7 +68,7 @@ public class TecnicaVorac {
 		if (this.kmCotxeDipositPle < this.kmEntreGasolineres || this.kmCotxeDipositPle < this.kmEntreCiutats/this.nombreGasolineres) throw new Exception("No pot arribar a la gasolinera");
 		if (parades == 0) {
 			System.out.println("-------------------------------------------------------");
-			System.out.println("El vehicle no haurÃ  de fer cap parada a les gasolineres");
+			System.out.println("El vehicle no haurà  de fer cap parada a les gasolineres");
 			System.out.println("-------------------------------------------------------");
 		}
 		else {
@@ -101,7 +89,7 @@ public class TecnicaVorac {
 				
 			}
 			System.out.println("-----------------------------------------------------");
-			System.out.println("El vehicle haurÃ  de fer " + parades + " parades a les gasolineres");
+			System.out.println("El vehicle haurà  de fer " + parades + " parades a les gasolineres");
 			System.out.println("-----------------------------------------------------");
 			System.out.println(stops);
 		}

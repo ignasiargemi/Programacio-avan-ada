@@ -3,7 +3,7 @@ package Exercici2;
 public class ProblemaCaixaPolvorons{
 	
 	public static void main(String args[]){
-		System.out.println("COMENÃ‡A L'EXECUCIÃ“");
+		System.out.println("COMENÇA L'EXECUCIÓ“");
 		System.out.println();
 		Polvoro p = new Polvoro("xoco", 0123); 
 		Polvoro p1 = new Polvoro("xoco", 0124);
@@ -41,8 +41,8 @@ public class ProblemaCaixaPolvorons{
 		box[15] = p15;
 		
 		Caixa caixa = new Caixa(box, 16, 776);
-		if (caixa.EsAvorrida()) System.out.println("Si que Ã©s avorrida...polvorÃ³ pesat: " +  caixa.getType());
-		else System.out.println("No Ã©s avorrida");
+		if (caixa.EsAvorrida()) System.out.println("Si que és avorrida...polvoró pesat: " +  caixa.getType());
+		else System.out.println("No és avorrida");
 		System.out.print(caixa.toString());
 		
 		
