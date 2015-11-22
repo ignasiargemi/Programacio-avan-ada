@@ -3,7 +3,7 @@ package Exercici2;
 public class ProblemaCaixaPolvorons{
 	
 	public static void main(String args[]){
-		System.out.println("COMENÇA L'EXECUCIÓ“");
+		System.out.println("COMENÇA L'EXECUCIÓ");
 		System.out.println();
 		Polvoro p = new Polvoro("xoco", 0123); 
 		Polvoro p1 = new Polvoro("xoco", 0124);
