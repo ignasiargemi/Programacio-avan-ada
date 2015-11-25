@@ -2,41 +2,30 @@ package Exercici2;
 
 public class Polvoro {
 	
+	//Atributs
 	private String tipus;
 	private long id;
 	
-
-	public Polvoro() {
-		super();	
-	}
-	
+	//Creadors
 	public Polvoro(String tipus, long id){
 		this.tipus = tipus;
 		this.id = id;
 	}
 
-	public String getTipus() {
-		return tipus;
-	}
+	//Getters i Setters
+	public String getTipus() {return tipus;}
 
-	public void setTipus(String tipus) {
-		this.tipus = tipus;
-	}
+	public void setTipus(String tipus) {this.tipus = tipus;}
 
-	public long getId() {
-		return id;
-	}
+	public long getId() {return id;}
 
-	public void setId(long id) {
-		this.id = id;
-	}
+	public void setId(long id) {this.id = id;}
 
-	@Override
+	//ToString
 	public String toString() {
 		return "Polvoro [tipus=" + tipus + ", id=" + id + "]";
 	}
 
-	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -54,7 +43,6 @@ public class Polvoro {
 		else return false;
 		
 	}
-
 }
 
 	

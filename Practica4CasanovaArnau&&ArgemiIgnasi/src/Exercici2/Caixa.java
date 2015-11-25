@@ -5,17 +5,20 @@ import java.util.ArrayList;
 
 public class Caixa {
 	
+	//Atributs
 	private int nombreElements;
 	private int caixaId;
 	private ArrayList<Polvoro> polvorons;
 	String type;
 	
+	//Creadors
 	public Caixa(ArrayList<Polvoro> p, int nombreElements, int caixaId){
 		this.polvorons = p;
 		this.nombreElements = nombreElements;
 		this.caixaId = caixaId;
 	}
 
+	//Getters i Setters
 	public int getNombreElements() {return nombreElements;}
 	public void setNombreElements(int nombreElements) {this.nombreElements = nombreElements;}
 	public int getCaixaId() {return caixaId;}
@@ -25,6 +28,7 @@ public class Caixa {
 	public ArrayList<Polvoro> getPolvorons() {return polvorons;}
 	public void setPolvorons(ArrayList<Polvoro> polvorons) {this.polvorons = polvorons;}
 	
+	//ToString
 	public String toString() {
 		String retorn = "Caixa [nombreElements=" + nombreElements + ", caixaId=" + caixaId + "]\n";
 		retorn += "Llista de polvorons:\n";
