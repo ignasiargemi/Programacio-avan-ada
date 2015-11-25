@@ -5,17 +5,21 @@ import java.util.Scanner;
 public class execucio {
 	public static void main(String args[]) throws Exception{
 		
-		//Introducció de les dades aleatoriament
+		//Introducciï¿½ de les dades aleatoriament
 		String[] inici = {"Barcelona","Granollers", "l'Ametlla","Tarragona", "Lleida", "Vic","Vielha"};
-		String[] fi = {"Girona","Mataró", "la Garriga","Badalona", "la Roca", "Canovelles","Ripoll"};
+		String[] fi = {"Girona","Matarï¿½", "la Garriga","Badalona", "la Roca", "Canovelles","Ripoll"};
 		String ciutatOrigen = inici[(int) Math.floor(Math.random()*inici.length)];
 		String ciutatDesti = fi[(int) Math.floor(Math.random()*fi.length)];
+		
 		int kmEntreCiutats = (int) Math.floor(Math.random()*1000+1);
 		int kmCotxeDipositPle = (int) Math.floor(Math.random()*120+1);
-		int nombreGasolineras = (int) Math.floor(Math.random()*60+1);
-		int kmEntreGasolineras = (int) Math.floor(Math.random()*50+1);
+		int nombreGasolineres = (int) Math.floor(Math.random()*40+1);
+		int kmEntreGasolineres = 0;
+		int[] gasolineres = new int[nombreGasolineres];
+		for (int z=0; z < nombreGasolineres; ++z){gasolineres[z] = kmEntreCiutats/nombreGasolineres;}
 		
-		//Inici de l'excecució
+		
+		//Inici de l'excecuciï¿½
 		System.out.println("Vols introduir les dades? [SI/NO]");
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
@@ -35,13 +39,17 @@ public class execucio {
 			kmEntreCiutats = sc.nextInt();
 			System.out.println("Introdueix els quilometres que pot recorrer el cotxe amb el diposit ple");
 			kmCotxeDipositPle = sc.nextInt();
-			System.out.println("Introdueix el nombre de gasolineres");
-			nombreGasolineras = sc.nextInt();
-			System.out.println("Introdueix la distancia entre gasolineres");
-			kmEntreGasolineras = sc.nextInt();
+			System.out.println("Introdueix el nombre de gasolineres[]");
+			nombreGasolineres = sc.nextInt();
+			for (int i = 0; i < nombreGasolineres; ++i){
+				int ii = i+1;
+				System.out.println("Introdueix la distancia entre les gasolineres " + i + " i " + ii);
+				kmEntreGasolineres = sc.nextInt();
+				gasolineres[i] = kmEntreGasolineres;
+			}
 		}
 		
-		TecnicaVorac ruta = new TecnicaVorac(ciutatOrigen, ciutatDesti, kmEntreGasolineras, nombreGasolineras, kmCotxeDipositPle, kmEntreCiutats);
+		TecnicaVorac ruta = new TecnicaVorac(ciutatOrigen, ciutatDesti, nombreGasolineres, kmCotxeDipositPle, kmEntreCiutats, gasolineres);
 		ruta.seleccioGasolinera();
 		System.out.print(ruta.toString());
 		/*
