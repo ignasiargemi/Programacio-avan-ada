@@ -60,9 +60,12 @@ public class execucio {
 		TecnicaVorac ruta = new TecnicaVorac(ciutatOrigen, ciutatDesti, nombreGasolineres, 
 				kmCotxeDipositPle, kmEntreCiutats, gasolineres);
 		ArrayList<Integer> resultat = ruta.seleccioGasolinera();
-		for (int i = 0; i < resultat.size(); ++i) {
-			msgLN((i+1)+ ". " + resultat.get(i) + " km");
+		if (resultat != null) {
+			for (int i = 0; i < resultat.size(); ++i) {
+				msgLN((i+1)+ ". " + resultat.get(i) + " km");
+			}
 		}
+		
 		msg(ruta.toString());
 
 		/*

@@ -38,7 +38,6 @@ public class TecnicaVorac {
 	public ArrayList<Integer> seleccioGasolinera() throws Exception{
 		ArrayList<Integer> resultat = null;
 		if(noPara()) {
-		
 			int comptadorKM = 0;
 			int gas = 0;
 			int KMcotxe = this.kmCotxeDipositPle;
@@ -48,20 +47,23 @@ public class TecnicaVorac {
 					resultat = new ArrayList<Integer>();
 					resultat.add(this.distanciaEntreGasolineres[0]);
 				}
-				else throw new Exception("No pot arribar a la gasolinera");
+				else {
+					msgLN("No pot arribar a la gasolinera");
+					return null;
+				}
 			}
 			else {
 				resultat = new ArrayList<Integer>();
-				while (comptadorKM < this.kmEntreCiutats && gas < this.nombreGasolineres+1) {
-					if (KMcotxe < this.distanciaEntreGasolineres[gas]) {
-						KMcotxe = this.kmCotxeDipositPle;
-						++parades;
-						resultat.add(comptadorKM);
-					}
-					else {
-						comptadorKM += this.distanciaEntreGasolineres[gas];
-						KMcotxe -= this.distanciaEntreGasolineres[gas];
-						++gas;
+				int inici = 0;
+				comptadorKM = 0;
+				KMcotxe = this.kmCotxeDipositPle;
+				while (comptadorKM < this.kmEntreCiutats && inici < this.distanciaEntreGasolineres.length) {
+					int posMax = select(inici);
+					if (posMax != -1) {
+						int suma = 0;
+						for (int i = 0; i < posMax; ++i) suma += this.distanciaEntreGasolineres[i];
+						resultat.add(suma);
+						inici = posMax;
 					}
 				}
 				msgLN("-----------------------------------------------------");
@@ -71,7 +73,32 @@ public class TecnicaVorac {
 		}
 		return resultat;
 	}
+	
+	
 		
+	private int select(int inici) {
+		int suma = this.kmCotxeDipositPle;
+		boolean trobat = false;
+		if (inici < this.distanciaEntreGasolineres.length) {
+			while (!trobat) {
+				if (inici < this.distanciaEntreGasolineres.length) {
+					if (suma < this.distanciaEntreGasolineres[inici]) {
+						++this.parades;
+						trobat = true;
+						return inici;
+					}
+					else {
+						suma -= this.distanciaEntreGasolineres[inici];
+						++inici;
+					}
+				}
+				else trobat = true;
+			}
+			return inici;
+		}
+		else return -1;
+	}
+
 	//Comprova les excepcions
 	private boolean noPara() throws Exception {
 		int parades = -1;
