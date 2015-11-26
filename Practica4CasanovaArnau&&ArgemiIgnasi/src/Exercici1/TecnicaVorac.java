@@ -39,8 +39,6 @@ public class TecnicaVorac {
 		ArrayList<Integer> resultat = null;
 		if(noPara()) {
 			int comptadorKM = 0;
-			int gas = 0;
-			int KMcotxe = this.kmCotxeDipositPle;
 			if(this.nombreGasolineres == 1) {
 				if (this.distanciaEntreGasolineres[0] < this.kmCotxeDipositPle && this.distanciaEntreGasolineres[1] < this.kmCotxeDipositPle) {
 					this.parades = 1;
@@ -56,7 +54,6 @@ public class TecnicaVorac {
 				resultat = new ArrayList<Integer>();
 				int inici = 0;
 				comptadorKM = 0;
-				KMcotxe = this.kmCotxeDipositPle;
 				while (comptadorKM < this.kmEntreCiutats && inici < this.distanciaEntreGasolineres.length) {
 					int posMax = select(inici);
 					if (posMax != -1) {
@@ -75,7 +72,6 @@ public class TecnicaVorac {
 	}
 	
 	
-		
 	private int select(int inici) {
 		int suma = this.kmCotxeDipositPle;
 		boolean trobat = false;

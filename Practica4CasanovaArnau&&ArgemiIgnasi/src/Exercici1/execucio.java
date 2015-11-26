@@ -19,7 +19,7 @@ public class execucio {
 		int acc = 0;
 		int[] gasolineres = new int[nombreGasolineres+1];
 		vectorRandom(gasolineres,nombreGasolineres,kmCotxeDipositPle,kmEntreCiutats);
-		while (gasolineres[nombreGasolineres] < 1) vectorRandom(gasolineres,nombreGasolineres,kmCotxeDipositPle,kmEntreCiutats);
+		while (gasolineres[nombreGasolineres] < 1 || gasolineres[nombreGasolineres] > kmCotxeDipositPle) vectorRandom(gasolineres,nombreGasolineres,kmCotxeDipositPle,kmEntreCiutats);
 		
 		//Inici de l'excecuci�
 		msgLN("Vols introduir les dades? [SI/NO]");
@@ -53,15 +53,27 @@ public class execucio {
 				acc += kmEntreGasolineres;
 				gasolineres[i] = kmEntreGasolineres;
 			}
-			
 			gasolineres[nombreGasolineres] = kmEntreCiutats - acc;
+			while (gasolineres[nombreGasolineres] < 1 || gasolineres[nombreGasolineres] > kmCotxeDipositPle) {
+				msgLN("Les distancies que has introduit no són correctes.");
+				msgLN("Torna-ho a provar");
+				acc = 0;
+				for (int i = 0; i < nombreGasolineres; ++i){
+					ii = i+1;
+					msgLN("Introdueix la distancia entre les gasolineres " + i + " i " + ii);
+					kmEntreGasolineres = sc.nextInt();
+					acc += kmEntreGasolineres;
+					gasolineres[i] = kmEntreGasolineres;
+				}
+				gasolineres[nombreGasolineres] = kmEntreCiutats - acc;
+			}
 		}
 		//Primer creem la ruta, seguidament calculem la ruta optima i finalment treiem totes les dades de la ruta
 		TecnicaVorac ruta = new TecnicaVorac(ciutatOrigen, ciutatDesti, nombreGasolineres, 
 				kmCotxeDipositPle, kmEntreCiutats, gasolineres);
 		ArrayList<Integer> resultat = ruta.seleccioGasolinera();
 		if (resultat != null) {
-			for (int i = 0; i < resultat.size(); ++i) {
+			for (int i = 0; i < resultat.size()-1; ++i) {
 				msgLN((i+1)+ ". " + resultat.get(i) + " km");
 			}
 		}
@@ -73,10 +85,11 @@ public class execucio {
 		funci� selecci�: volem optimitzar el viatge realitzant el menor n�mero de parades possible, 
 		per tant la nostre funci� consultar� els km que pot recorre amb el diposit ple i escollir� 
 		la gasolinera que s'apropi m�s als km que pot recorre(m�s petit o igual)
-		La nostre soluci� sempre trobar� la millor soluci�
+		La nostre soluci� sempre trobar� la millor soluci� perquè sempre agafem la gasolinera
 		*/
 	}
 
+	//Funcio Auxiliar
 	private static void vectorRandom(int[] gasolineres, int nombreGasolineres, int kmCotxeDipositPle, int kmEntreCiutats) {
 		int acc = 0;
 		for (int z=0; z < nombreGasolineres; ++z){
