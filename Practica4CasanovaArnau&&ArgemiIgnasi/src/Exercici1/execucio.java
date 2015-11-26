@@ -15,8 +15,16 @@ public class execucio {
 		int kmCotxeDipositPle = (int) Math.floor(Math.random()*120+1);
 		int nombreGasolineres = (int) Math.floor(Math.random()*40+1);
 		int kmEntreGasolineres = 0;
-		int[] gasolineres = new int[nombreGasolineres];
-		for (int z=0; z < nombreGasolineres; ++z){gasolineres[z] = (int) Math.floor(Math.random()*kmCotxeDipositPle/2+1);}
+		int acc = 0;
+		int[] gasolineres = new int[nombreGasolineres+1];
+		for (int z=0; z < nombreGasolineres; ++z){
+			gasolineres[z] = (int) Math.floor(Math.random()*kmCotxeDipositPle/2+5);
+			acc += gasolineres[z];
+		}
+		gasolineres[nombreGasolineres] = kmEntreCiutats - acc;
+		
+		
+		
 		
 		
 		//Inici de l'excecuci�
@@ -41,21 +49,29 @@ public class execucio {
 			kmCotxeDipositPle = sc.nextInt();
 			msgLN("Introdueix el nombre de gasolineres[]");
 			nombreGasolineres = sc.nextInt();
+			gasolineres = new int[nombreGasolineres+1];
+			acc = 0; 
+			int ii;
 			for (int i = 0; i < nombreGasolineres; ++i){
-				int ii = i+1;
+				ii = i+1;
 				msgLN("Introdueix la distancia entre les gasolineres " + i + " i " + ii);
 				kmEntreGasolineres = sc.nextInt();
+				acc += kmEntreGasolineres;
 				gasolineres[i] = kmEntreGasolineres;
 			}
+			
+			gasolineres[nombreGasolineres] = kmEntreCiutats - acc;
 		}
 		
 		TecnicaVorac ruta = new TecnicaVorac(ciutatOrigen, ciutatDesti, nombreGasolineres, kmCotxeDipositPle, kmEntreCiutats, gasolineres);
+		//public TecnicaVorac(String origen, String desti, int numGas, int kmDip, int kmC, int[] gasolineres){
 		ruta.seleccioGasolinera();
 		msg(ruta.toString());
 
 		/*
 		candidats: totes les gasolineres menys la primera, que es d'on surt el cotxe, com a minim parara a distanciaEntreCiutats/kmDipositPle
-		funcio seleccio: volem optimitzar el viatge, per tant la nostre funcio consultara els km k pot recorre amb el diposit ple i escollira la gasolinera que s'apropi m�s als km k pot recorre(mes petit o igual)
+		funcio seleccio: volem optimitzar el viatge, per tant la nostre funcio consultara els km que pot 
+		recorre amb el diposit ple i escollira la gasolinera que s'apropi m�s als km k pot recorre(mes petit o igual)
 		sempre trobara la millor solucio
 		*/
 	}

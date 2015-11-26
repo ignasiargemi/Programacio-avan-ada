@@ -70,7 +70,9 @@ public class TecnicaVorac {
 	private boolean noPara() throws Exception {
 		int parades = -1;
 		if (this.kmCotxeDipositPle > this.kmEntreCiutats) parades = 0;
-		if (this.kmCotxeDipositPle < this.kmEntreCiutats/this.nombreGasolineres) throw new Exception("No pot arribar a la gasolinera");
+		if (this.nombreGasolineres != 1) {
+			if (this.kmCotxeDipositPle < this.kmEntreCiutats/this.nombreGasolineres) throw new Exception("No pot arribar a la gasolinera");
+		}
 		for (int i = 0; i < this.distanciaEntreGasolineres.length;++i) {
 			if (this.distanciaEntreGasolineres[i] > this.kmCotxeDipositPle) throw new Exception("No pot arribar a la gasolinera");
 		}
