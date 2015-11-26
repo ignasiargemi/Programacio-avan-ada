@@ -1,5 +1,7 @@
 package Exercici1;
 
+import java.util.ArrayList;
+
 public class TecnicaVorac {
 	
 	//Atributs
@@ -7,6 +9,7 @@ public class TecnicaVorac {
 	private String ciutatDesti;
 	private int kmEntreCiutats, nombreGasolineres, kmCotxeDipositPle;
 	private int[] distanciaEntreGasolineres;
+	private int parades = 0;
 	
 	//Creador
 	public TecnicaVorac(String origen, String desti, int numGas, int kmDip, int kmC, int[] gasolineres){
@@ -20,46 +23,40 @@ public class TecnicaVorac {
 
 	//Getters i Setters
 	public String getCiutatOrigen() {return ciutatOrigen;}
-
 	public void setCiutatOrigen(String ciutatOrigen) {this.ciutatOrigen = ciutatOrigen;}
-
 	public String getCiutatDesti() {return ciutatDesti;}
-
 	public void setCiutatDesti(String ciutatDesti) {this.ciutatDesti = ciutatDesti;}
-
 	public int getKmEntreCiutats() {return kmEntreCiutats;}
-
 	public void setKmEntreCiutats(int kmEntreCiutats) {this.kmEntreCiutats = kmEntreCiutats;}
-
 	public int getnombreGasolineres() {return nombreGasolineres;}
-
 	public void setnombreGasolineres(int nombreGasolineres) {this.nombreGasolineres = nombreGasolineres;}
-
 	public int getKmCotxeDipositPle() {return kmCotxeDipositPle;}
-
 	public void setKmCotxeDipositPle(int kmCotxeDipositPle) {this.kmCotxeDipositPle = kmCotxeDipositPle;}
+	public int getParades(){return this.parades;}
 
-	//Selecció de ruta
-	public void seleccioGasolinera() throws Exception{
+	//Selecciï¿½ de ruta
+	public ArrayList<Integer> seleccioGasolinera() throws Exception{
+		ArrayList<Integer> resultat = null;
 		if(noPara()) {
-			String stops = "";
-			int parades = 0;
+		
 			int comptadorKM = 0;
 			int gas = 0;
 			int KMcotxe = this.kmCotxeDipositPle;
 			if(this.nombreGasolineres == 1) {
 				if (this.distanciaEntreGasolineres[0] < this.kmCotxeDipositPle && this.distanciaEntreGasolineres[1] < this.kmCotxeDipositPle) {
-					++parades;
-					stops += parades + ". Parada al km " + this.distanciaEntreGasolineres[0] + "\n";
+					this.parades = 1;
+					resultat = new ArrayList<Integer>();
+					resultat.add(this.distanciaEntreGasolineres[0]);
 				}
 				else throw new Exception("No pot arribar a la gasolinera");
 			}
 			else {
-				while (comptadorKM < this.kmEntreCiutats && gas < this.nombreGasolineres) {
+				resultat = new ArrayList<Integer>();
+				while (comptadorKM < this.kmEntreCiutats && gas < this.nombreGasolineres+1) {
 					if (KMcotxe < this.distanciaEntreGasolineres[gas]) {
 						KMcotxe = this.kmCotxeDipositPle;
 						++parades;
-						stops += parades + ". Parada al km " + comptadorKM + "\n";
+						resultat.add(comptadorKM);
 					}
 					else {
 						comptadorKM += this.distanciaEntreGasolineres[gas];
@@ -68,13 +65,13 @@ public class TecnicaVorac {
 					}
 				}
 				msgLN("-----------------------------------------------------");
-				msgLN("El vehicle haurà de fer " + parades + " parades a les gasolineres");
+				msgLN("El vehicle haurÃ  de fer " + parades + " parades a les gasolineres");
 				msgLN("-----------------------------------------------------");
-				msgLN(stops);
 			}
 		}
+		return resultat;
 	}
-	
+		
 	//Comprova les excepcions
 	private boolean noPara() throws Exception {
 		int parades = -1;
@@ -87,7 +84,7 @@ public class TecnicaVorac {
 		}
 		if (parades == 0) {
 			msgLN("-------------------------------------------------------");
-			msgLN("El vehicle no haurà de fer cap parada a les gasolineres");
+			msgLN("El vehicle no haurÃ  de fer cap parada a les gasolineres");
 			msgLN("-------------------------------------------------------");
 			return false;
 		}
