@@ -41,20 +41,9 @@ public class TecnicaVorac {
 
 	//Selecció de ruta
 	public void seleccioGasolinera() throws Exception{
-		int parades = -1;
-		if (this.kmCotxeDipositPle > this.kmEntreCiutats) parades = 0;
-		if (this.kmCotxeDipositPle < this.kmEntreCiutats/this.nombreGasolineres) throw new Exception("No pot arribar a la gasolinera");
-		for (int i = 0; i < this.distanciaEntreGasolineres.length;++i) {
-			if (this.distanciaEntreGasolineres[i] > this.kmCotxeDipositPle) throw new Exception("No pot arribar a la gasolinera");
-		}
-		if (parades == 0) {
-			System.out.println("-------------------------------------------------------");
-			System.out.println("El vehicle no haur� de fer cap parada a les gasolineres");
-			System.out.println("-------------------------------------------------------");
-		}
-		else {
+		if(noPara()) {
 			String stops = "";
-			parades = 0;
+			int parades = 0;
 			int comptadorKM = 0;
 			int gas = 0;
 			int KMcotxe = this.kmCotxeDipositPle;
@@ -71,11 +60,27 @@ public class TecnicaVorac {
 				}
 				
 			}
-			System.out.println("-----------------------------------------------------");
-			System.out.println("El vehicle haur� de fer " + parades + " parades a les gasolineres");
-			System.out.println("-----------------------------------------------------");
-			System.out.println(stops);
+			msgLN("-----------------------------------------------------");
+			msgLN("El vehicle haur� de fer " + parades + " parades a les gasolineres");
+			msgLN("-----------------------------------------------------");
+			msgLN(stops);
 		}
+	}
+	
+	private boolean noPara() throws Exception {
+		int parades = -1;
+		if (this.kmCotxeDipositPle > this.kmEntreCiutats) parades = 0;
+		if (this.kmCotxeDipositPle < this.kmEntreCiutats/this.nombreGasolineres) throw new Exception("No pot arribar a la gasolinera");
+		for (int i = 0; i < this.distanciaEntreGasolineres.length;++i) {
+			if (this.distanciaEntreGasolineres[i] > this.kmCotxeDipositPle) throw new Exception("No pot arribar a la gasolinera");
+		}
+		if (parades == 0) {
+			msgLN("-------------------------------------------------------");
+			msgLN("El vehicle no haur� de fer cap parada a les gasolineres");
+			msgLN("-------------------------------------------------------");
+			return false;
+		}
+		else return true;
 	}
 
 	//toString
@@ -93,5 +98,14 @@ public class TecnicaVorac {
 		return res;
 	}
 	
+	//Missatges per pantalla
+	private static void msg(String s) {
+		System.out.print(s);
+		
+	}
 	
+	private static void msgLN(String s) {
+		System.out.println(s);
+		
+	}
 }
