@@ -47,23 +47,32 @@ public class TecnicaVorac {
 			int comptadorKM = 0;
 			int gas = 0;
 			int KMcotxe = this.kmCotxeDipositPle;
-			while (comptadorKM < this.kmEntreCiutats && gas < this.nombreGasolineres) {
-				if (KMcotxe < this.distanciaEntreGasolineres[gas]) {
-					KMcotxe = this.kmCotxeDipositPle;
+			if(this.nombreGasolineres == 1) {
+				if (this.distanciaEntreGasolineres[0] < this.kmCotxeDipositPle && this.distanciaEntreGasolineres[1] < this.kmCotxeDipositPle) {
 					++parades;
-					stops += parades + ". Parada al km " + comptadorKM + "\n";
+					stops += parades + ". Parada al km " + this.distanciaEntreGasolineres[0] + "\n";
 				}
-				else {
-					comptadorKM += this.distanciaEntreGasolineres[gas];
-					KMcotxe -= this.distanciaEntreGasolineres[gas];
-					++gas;
-				}
-				
+				else throw new Exception("No pot arribar a la gasolinera");
 			}
-			msgLN("-----------------------------------------------------");
-			msgLN("El vehicle haur� de fer " + parades + " parades a les gasolineres");
-			msgLN("-----------------------------------------------------");
-			msgLN(stops);
+			else {
+				while (comptadorKM < this.kmEntreCiutats && gas < this.nombreGasolineres) {
+					if (KMcotxe < this.distanciaEntreGasolineres[gas]) {
+						KMcotxe = this.kmCotxeDipositPle;
+						++parades;
+						stops += parades + ". Parada al km " + comptadorKM + "\n";
+					}
+					else {
+						comptadorKM += this.distanciaEntreGasolineres[gas];
+						KMcotxe -= this.distanciaEntreGasolineres[gas];
+						++gas;
+					}
+					
+				}
+				msgLN("-----------------------------------------------------");
+				msgLN("El vehicle haur� de fer " + parades + " parades a les gasolineres");
+				msgLN("-----------------------------------------------------");
+				msgLN(stops);
+			}
 		}
 	}
 	

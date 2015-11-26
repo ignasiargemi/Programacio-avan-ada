@@ -17,15 +17,8 @@ public class execucio {
 		int kmEntreGasolineres = 0;
 		int acc = 0;
 		int[] gasolineres = new int[nombreGasolineres+1];
-		for (int z=0; z < nombreGasolineres; ++z){
-			gasolineres[z] = (int) Math.floor(Math.random()*kmCotxeDipositPle/2+5);
-			acc += gasolineres[z];
-		}
-		gasolineres[nombreGasolineres] = kmEntreCiutats - acc;
-		
-		
-		
-		
+		vectorRandom(gasolineres,nombreGasolineres,kmCotxeDipositPle,kmEntreCiutats);
+		while (gasolineres[nombreGasolineres] < 1) vectorRandom(gasolineres,nombreGasolineres,kmCotxeDipositPle,kmEntreCiutats);
 		
 		//Inici de l'excecuci�
 		msgLN("Vols introduir les dades? [SI/NO]");
@@ -74,6 +67,15 @@ public class execucio {
 		recorre amb el diposit ple i escollira la gasolinera que s'apropi m�s als km k pot recorre(mes petit o igual)
 		sempre trobara la millor solucio
 		*/
+	}
+
+	private static void vectorRandom(int[] gasolineres, int nombreGasolineres, int kmCotxeDipositPle, int kmEntreCiutats) {
+		int acc = 0;
+		for (int z=0; z < nombreGasolineres; ++z){
+			gasolineres[z] = (int) Math.floor(Math.random()*kmCotxeDipositPle/3+1);
+			acc += gasolineres[z];
+		}
+		gasolineres[nombreGasolineres] = kmEntreCiutats - acc;
 	}
 
 	//Missatges per pantalla
