@@ -8,7 +8,7 @@ public class TecnicaVorac {
 	private int kmEntreCiutats, nombreGasolineres, kmCotxeDipositPle;
 	private int[] distanciaEntreGasolineres;
 	
-	
+	//Creador
 	public TecnicaVorac(String origen, String desti, int numGas, int kmDip, int kmC, int[] gasolineres){
 		this.ciutatOrigen = origen;
 		this.ciutatDesti = desti;
@@ -39,7 +39,7 @@ public class TecnicaVorac {
 
 	public void setKmCotxeDipositPle(int kmCotxeDipositPle) {this.kmCotxeDipositPle = kmCotxeDipositPle;}
 
-	//SelecciÃ³ de ruta
+	//Selecció de ruta
 	public void seleccioGasolinera() throws Exception{
 		if(noPara()) {
 			String stops = "";
@@ -66,28 +66,28 @@ public class TecnicaVorac {
 						KMcotxe -= this.distanciaEntreGasolineres[gas];
 						++gas;
 					}
-					
 				}
 				msgLN("-----------------------------------------------------");
-				msgLN("El vehicle haurï¿½ de fer " + parades + " parades a les gasolineres");
+				msgLN("El vehicle haurà de fer " + parades + " parades a les gasolineres");
 				msgLN("-----------------------------------------------------");
 				msgLN(stops);
 			}
 		}
 	}
 	
+	//Comprova les excepcions
 	private boolean noPara() throws Exception {
 		int parades = -1;
 		if (this.kmCotxeDipositPle > this.kmEntreCiutats) parades = 0;
-		if (this.nombreGasolineres != 1) {
-			if (this.kmCotxeDipositPle < this.kmEntreCiutats/this.nombreGasolineres) throw new Exception("No pot arribar a la gasolinera");
-		}
 		for (int i = 0; i < this.distanciaEntreGasolineres.length;++i) {
-			if (this.distanciaEntreGasolineres[i] > this.kmCotxeDipositPle) throw new Exception("No pot arribar a la gasolinera");
+			if (this.distanciaEntreGasolineres[i] > this.kmCotxeDipositPle) {
+				msgLN("No pot arribar a la gasolinera\n");
+				return false;
+			}
 		}
 		if (parades == 0) {
 			msgLN("-------------------------------------------------------");
-			msgLN("El vehicle no haurï¿½ de fer cap parada a les gasolineres");
+			msgLN("El vehicle no haurà de fer cap parada a les gasolineres");
 			msgLN("-------------------------------------------------------");
 			return false;
 		}
@@ -109,14 +109,8 @@ public class TecnicaVorac {
 		return res;
 	}
 	
-	//Missatges per pantalla
-	private static void msg(String s) {
-		System.out.print(s);
-		
-	}
-	
+	//Missatges per pantalla	
 	private static void msgLN(String s) {
 		System.out.println(s);
-		
 	}
 }

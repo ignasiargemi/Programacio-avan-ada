@@ -5,22 +5,23 @@ import java.util.Scanner;
 public class execucio {
 	public static void main(String args[]) throws Exception{
 		
-		//Introducciï¿½ de les dades aleatoriament
+		//Introducció de les dades aleatoriament
 		String[] inici = {"Barcelona","Granollers", "l'Ametlla","Tarragona", "Lleida", "Vic","Vielha"};
-		String[] fi = {"Girona","Matarï¿½", "la Garriga","Badalona", "la Roca", "Canovelles","Ripoll"};
+		String[] fi = {"Girona","Mataró", "la Garriga","Badalona", "la Roca", "Canovelles","Ripoll"};
 		String ciutatOrigen = inici[(int) Math.floor(Math.random()*inici.length)];
 		String ciutatDesti = fi[(int) Math.floor(Math.random()*fi.length)];
 		
-		int kmEntreCiutats = (int) Math.floor(Math.random()*1000+1);
-		int kmCotxeDipositPle = (int) Math.floor(Math.random()*120+1);
-		int nombreGasolineres = (int) Math.floor(Math.random()*40+1);
+		int kmEntreCiutats = (int) Math.floor(Math.random()*600+1);
+		int kmCotxeDipositPle = (int) Math.floor(Math.random()*(120-40+1)+40);
+		//int valorEntero = Math.floor(Math.random()*(N-M+1)+M);
+		int nombreGasolineres = (int) Math.floor(Math.random()*30+1);
 		int kmEntreGasolineres = 0;
 		int acc = 0;
 		int[] gasolineres = new int[nombreGasolineres+1];
 		vectorRandom(gasolineres,nombreGasolineres,kmCotxeDipositPle,kmEntreCiutats);
 		while (gasolineres[nombreGasolineres] < 1) vectorRandom(gasolineres,nombreGasolineres,kmCotxeDipositPle,kmEntreCiutats);
 		
-		//Inici de l'excecuciï¿½
+		//Inici de l'excecució
 		msgLN("Vols introduir les dades? [SI/NO]");
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
@@ -56,12 +57,14 @@ public class execucio {
 			gasolineres[nombreGasolineres] = kmEntreCiutats - acc;
 		}
 		
-		TecnicaVorac ruta = new TecnicaVorac(ciutatOrigen, ciutatDesti, nombreGasolineres, kmCotxeDipositPle, kmEntreCiutats, gasolineres);
+		TecnicaVorac ruta = new TecnicaVorac(ciutatOrigen, ciutatDesti, nombreGasolineres, 
+				kmCotxeDipositPle, kmEntreCiutats, gasolineres);
 		ruta.seleccioGasolinera();
 		msg(ruta.toString());
 
 		/*
-		candidats: totes les gasolineres menys la primera, que es d'on surt el cotxe, com a minim parara a distanciaEntreCiutats/kmDipositPle
+		candidats: totes les gasolineres menys la primera, que es d'on surt el cotxe, 
+		com a minim parara a distanciaEntreCiutats/kmDipositPle
 		funcio seleccio: volem optimitzar el viatge, per tant la nostre funcio consultara els km que pot 
 		recorre amb el diposit ple i escollira la gasolinera que s'apropi mï¿½s als km k pot recorre(mes petit o igual)
 		sempre trobara la millor solucio
@@ -71,7 +74,7 @@ public class execucio {
 	private static void vectorRandom(int[] gasolineres, int nombreGasolineres, int kmCotxeDipositPle, int kmEntreCiutats) {
 		int acc = 0;
 		for (int z=0; z < nombreGasolineres; ++z){
-			gasolineres[z] = (int) Math.floor(Math.random()*kmCotxeDipositPle/3+1);
+			gasolineres[z] = (int) Math.floor(Math.random()*kmCotxeDipositPle+1);
 			acc += gasolineres[z];
 		}
 		gasolineres[nombreGasolineres] = kmEntreCiutats - acc;
