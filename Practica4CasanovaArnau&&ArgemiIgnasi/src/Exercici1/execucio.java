@@ -56,18 +56,18 @@ public class execucio {
 			
 			gasolineres[nombreGasolineres] = kmEntreCiutats - acc;
 		}
-		
+		//Primer creem la ruta, seguidament calculem la ruta optima i finalment treiem totes les dades de la ruta
 		TecnicaVorac ruta = new TecnicaVorac(ciutatOrigen, ciutatDesti, nombreGasolineres, 
 				kmCotxeDipositPle, kmEntreCiutats, gasolineres);
 		ruta.seleccioGasolinera();
 		msg(ruta.toString());
 
 		/*
-		candidats: totes les gasolineres menys la primera, que es d'on surt el cotxe, 
-		com a minim parara a distanciaEntreCiutats/kmDipositPle
-		funcio seleccio: volem optimitzar el viatge, per tant la nostre funcio consultara els km que pot 
-		recorre amb el diposit ple i escollira la gasolinera que s'apropi mï¿½s als km k pot recorre(mes petit o igual)
-		sempre trobara la millor solucio
+		candidats: totes les gasolineres són candidates a ser punts de parada
+		funció selecció: volem optimitzar el viatge realitzant el menor número de parades possible, 
+		per tant la nostre funció consultarà els km que pot recorre amb el diposit ple i escollirà 
+		la gasolinera que s'apropi més als km que pot recorre(més petit o igual)
+		La nostre solució sempre trobarà la millor solució
 		*/
 	}
 
