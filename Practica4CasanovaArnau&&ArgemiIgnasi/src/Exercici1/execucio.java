@@ -57,7 +57,6 @@ public class execucio {
 		}
 		
 		TecnicaVorac ruta = new TecnicaVorac(ciutatOrigen, ciutatDesti, nombreGasolineres, kmCotxeDipositPle, kmEntreCiutats, gasolineres);
-		//public TecnicaVorac(String origen, String desti, int numGas, int kmDip, int kmC, int[] gasolineres){
 		ruta.seleccioGasolinera();
 		msg(ruta.toString());
 
