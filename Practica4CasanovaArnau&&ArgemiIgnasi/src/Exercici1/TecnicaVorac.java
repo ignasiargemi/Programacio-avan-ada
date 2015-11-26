@@ -64,7 +64,7 @@ public class TecnicaVorac {
 					}
 				}
 				msgLN("-----------------------------------------------------");
-				msgLN("El vehicle haur√† de fer " + parades + " parades a les gasolineres");
+				msgLN("El vehicle haur‡† de fer " + parades + " parades a les gasolineres");
 				msgLN("-----------------------------------------------------");
 			}
 		}
@@ -107,7 +107,7 @@ public class TecnicaVorac {
 		}
 		if (parades == 0) {
 			msgLN("-------------------------------------------------------");
-			msgLN("El vehicle no haur√† de fer cap parada a les gasolineres");
+			msgLN("El vehicle no haur‡† de fer cap parada a les gasolineres");
 			msgLN("-------------------------------------------------------");
 			return false;
 		}

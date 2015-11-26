@@ -6,9 +6,9 @@ import java.util.Scanner;
 public class execucio {
 	public static void main(String args[]) throws Exception{
 		
-		//Introducciï¿½ de les dades aleatoriament
+		//Introducció de les dades aleatoriament
 		String[] inici = {"Barcelona","Granollers", "l'Ametlla","Tarragona", "Lleida", "Vic","Vielha"};
-		String[] fi = {"Girona","Matarï¿½", "la Garriga","Badalona", "la Roca", "Canovelles","Ripoll"};
+		String[] fi = {"Girona","Mataró", "la Garriga","Badalona", "la Roca", "Canovelles","Ripoll"};
 		String ciutatOrigen = inici[(int) Math.floor(Math.random()*inici.length)];
 		String ciutatDesti = fi[(int) Math.floor(Math.random()*fi.length)];
 		
@@ -21,7 +21,7 @@ public class execucio {
 		vectorRandom(gasolineres,nombreGasolineres,kmCotxeDipositPle,kmEntreCiutats);
 		while (gasolineres[nombreGasolineres] < 1 || gasolineres[nombreGasolineres] > kmCotxeDipositPle) vectorRandom(gasolineres,nombreGasolineres,kmCotxeDipositPle,kmEntreCiutats);
 		
-		//Inici de l'excecuciï¿½
+		//Inici de l'excecució
 		msgLN("Vols introduir les dades? [SI/NO]");
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
@@ -81,11 +81,11 @@ public class execucio {
 		msg(ruta.toString());
 
 		/*
-		candidats: totes les gasolineres sï¿½n candidates a ser punts de parada
-		funciï¿½ selecciï¿½: volem optimitzar el viatge realitzant el menor nï¿½mero de parades possible, 
-		per tant la nostre funciï¿½ consultarï¿½ els km que pot recorre amb el diposit ple i escollirï¿½ 
-		la gasolinera que s'apropi mï¿½s als km que pot recorre(mï¿½s petit o igual)
-		La nostre soluciï¿½ sempre trobarï¿½ la millor soluciï¿½ perquÃ¨ sempre agafem la gasolinera
+		candidats: totes les gasolineres són candidates a ser punts de parada
+		funció selecció: volem optimitzar el viatge realitzant el menor número de parades possible, 
+		per tant la nostre funció consultarà els km que pot recorre amb el diposit ple i escollirà 
+		la gasolinera que s'apropi més als km que pot recorre(més petit o igual)
+		La nostre solució sempre trobarà la millor solució perquè segeuix el procediment explicat abans.
 		*/
 	}
 
