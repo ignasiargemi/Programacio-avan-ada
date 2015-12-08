@@ -2,7 +2,6 @@ package Continental;
 
 public class Continental {
 	private Taulell taulell;
-	private int numeroPeces = 32;
 	private static int BUIT = 0;
 	private static int PLENA = 1;
 	private static int NULA = -1;

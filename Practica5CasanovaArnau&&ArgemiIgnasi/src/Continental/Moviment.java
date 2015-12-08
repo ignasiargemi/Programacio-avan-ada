@@ -24,10 +24,7 @@ public class Moviment {
 	}
 	
 	public String toString() {
-		String resultat = "";
-		resultat += "Posicio inicial: " +this.posIncial.toString() + "\n";
-		resultat += "Posicio final: " +this.posFinal.toString() + "\n";
-		resultat += "Posicio eliminada: " +this.posEliminada.toString() + "\n";
-		return resultat;
+		return "(" + this.posIncial.toString() + ", " + this.posFinal.toString() + ", " 
+				+ this.posEliminada.toString() + ")";
 	}
 }
