@@ -10,7 +10,7 @@ public class Continental {
 	
 	//Tipus de direccions
 	public static final int AMUNT = 1, AVALL = 2, ESQUERRA = 3, DRETA = 4;
-	public static final int [] direccions = {AMUNT,AVALL,ESQUERRA,DRETA};
+	public static final int [] direccions = {AMUNT,ESQUERRA,AVALL,DRETA};
 	
 	//Solució
 	//public Solucio solucions;
@@ -53,12 +53,14 @@ public class Continental {
 		else return true;
 	}
 	
-	public int possibleDireccio(int i, int j) {
+	public int possibleDireccio(int i, int j, int k) {
 		if (i < 0 || i > mida-1 || j < 0 || j > mida-1) return -1;
-		if (taulell.getContingutPos(i-1, j) == PLENA && taulell.getContingutPos(i-2, j) == BUIT) return AMUNT;
-		if (taulell.getContingutPos(i+1, j) == PLENA && taulell.getContingutPos(i+2, j) == BUIT) return AVALL;
-		if (taulell.getContingutPos(i, j-1) == PLENA && taulell.getContingutPos(i, j-2) == BUIT) return ESQUERRA;
-		if (taulell.getContingutPos(i, j+1) == PLENA && taulell.getContingutPos(i, j+2) == BUIT) return DRETA;
+		
+		if (k == AMUNT && taulell.getContingutPos(i-1, j) == PLENA && taulell.getContingutPos(i-2, j) == BUIT) return AMUNT;
+		if (k == AVALL && taulell.getContingutPos(i+1, j) == PLENA && taulell.getContingutPos(i+2, j) == BUIT) return AVALL;
+		if (k == ESQUERRA && taulell.getContingutPos(i, j-1) == PLENA && taulell.getContingutPos(i, j-2) == BUIT) return ESQUERRA;
+		if (k == DRETA && taulell.getContingutPos(i, j+1) == PLENA && taulell.getContingutPos(i, j+2) == BUIT) return DRETA;
+		
 		return 0;
 	}
 	
@@ -66,8 +68,8 @@ public class Continental {
 		String resultat = "";
 		for (int i = 0; i < mida; ++i) {
 			for (int j = 0; j < mida; ++j) {
-				if (this.taulell.getContingutPos(i, j) == NULA) resultat += "\t ";
-				else if (this.taulell.getContingutPos(i, j) != NULA) resultat += " " + this.taulell.getContingutPos(i, j) + "\t ";
+				if (this.taulell.getContingutPos(i, j) == NULA) resultat += "   ";
+				else if (this.taulell.getContingutPos(i, j) != NULA) resultat += " " + this.taulell.getContingutPos(i, j) + " ";
 			}
 			resultat += "\n";
 		}
@@ -108,7 +110,7 @@ public class Continental {
 		this.taulell.mouFitxa(m,1);
 		if (m == null) throw new Exception("No es pot afegir el moviment.");
 		int c = this.moviments.getMag().size();
-		System.out.println((c+1) +". " +  m.toString());
+		//System.out.println((c+1) +". " +  m.toString());
 		return this.moviments.afegeixMoviment(m);
 	}
 	
@@ -150,4 +152,17 @@ public class Continental {
 		}
 		return true;
 	}
+	/*
+	public int getPosX(int i, int direccio) {
+		if (direccio == AMUNT) return i-1;
+		else if (direccio == AVALL) return i+1;
+		return i;
+	}
+	
+	public int getPosY(int j, int direccio) {
+		if (direccio == ESQUERRA) return j-1;
+		else if (direccio == DRETA) return j+1;
+		return j;
+	}
+	*/
 }

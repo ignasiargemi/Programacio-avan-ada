@@ -20,12 +20,12 @@ public class Taulell {
 	
 	public void mouFitxa(Moviment m, int accio) throws Exception {
 		if (m == null) throw new Exception("No es pot moure cap fitxa");
-		if (accio == 1) {
+		if (accio == 1) {//Afegeix moviment
 			taulell[m.getPosIncial().getPosX()][m.getPosIncial().getPosY()] = BUIT;
 			taulell[m.getPosEliminada().getPosX()][m.getPosEliminada().getPosY()] = BUIT;
 			taulell[m.getPosFinal().getPosX()][m.getPosFinal().getPosY()] = PLENA;
 		}
-		else {
+		else {//Desfer moviemnt
 			taulell[m.getPosIncial().getPosX()][m.getPosIncial().getPosY()] = PLENA;
 			taulell[m.getPosEliminada().getPosX()][m.getPosEliminada().getPosY()] = PLENA;
 			taulell[m.getPosFinal().getPosX()][m.getPosFinal().getPosY()] = BUIT;
