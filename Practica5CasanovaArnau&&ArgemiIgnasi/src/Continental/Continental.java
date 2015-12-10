@@ -108,7 +108,7 @@ public class Continental {
 		this.taulell.mouFitxa(m,1);
 		if (m == null) throw new Exception("No es pot afegir el moviment.");
 		int c = this.moviments.getMag().size();
-		//System.out.println((c+1) +". " +  m.toString());
+		System.out.println((c+1) +". " +  m.toString());
 		return this.moviments.afegeixMoviment(m);
 	}
 	

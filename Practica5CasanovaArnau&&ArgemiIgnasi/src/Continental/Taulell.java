@@ -11,8 +11,8 @@ public class Taulell {
 	}
 	
 	public int getContingutPos(int i, int j) {
-		System.out.println(i + " " + j);
-		if (i < 0 || i > this.taulell.length || j < 0 || j > this.taulell.length-1) return NULA;
+		//System.out.println(i + " " + j);
+		if (i < 0 || i > this.taulell.length-1 || j < 0 || j > this.taulell.length-1) return NULA;
 		else return this.taulell[i][j];
 	}
 	
