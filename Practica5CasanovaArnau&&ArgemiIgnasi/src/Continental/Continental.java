@@ -1,6 +1,22 @@
 package Continental;
 
 public class Continental {
+	
+	public static void main(String[] args) throws Exception {
+		Solucio joc = new Solucio();
+		//Estat inicial
+		System.out.println(joc.toString());
+		
+		//Busquem la solució
+		if (joc.trobaSolucio(1)) System.out.println("Solucionat");
+		
+		//Estat final
+		System.out.println(joc.toString());
+		System.out.println();
+		System.out.println("Llista de moviments");
+		System.out.println(joc.toStringMoviments());
+	}
+	
 	private Taulell taulell;
 	private Magatzem_ruta moviments;
 	//Tipus de caselles
@@ -110,7 +126,7 @@ public class Continental {
 		this.taulell.mouFitxa(m,1);
 		if (m == null) throw new Exception("No es pot afegir el moviment.");
 		int c = this.moviments.getMag().size();
-		//System.out.println((c+1) +". " +  m.toString());
+		System.out.println((c+1) +". " +  m.toString());
 		return this.moviments.afegeixMoviment(m);
 	}
 	
@@ -152,17 +168,4 @@ public class Continental {
 		}
 		return true;
 	}
-	/*
-	public int getPosX(int i, int direccio) {
-		if (direccio == AMUNT) return i-1;
-		else if (direccio == AVALL) return i+1;
-		return i;
-	}
-	
-	public int getPosY(int j, int direccio) {
-		if (direccio == ESQUERRA) return j-1;
-		else if (direccio == DRETA) return j+1;
-		return j;
-	}
-	*/
 }
