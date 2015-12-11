@@ -13,13 +13,11 @@ public class Magatzem_ruta {
 	public ArrayList<Moviment> getMag(){return moviments;}
 	
 	public boolean afegeixMoviment(Moviment m) {
-		if (this.moviments.add(m)) return true;
-		else return false;
+		return this.moviments.add(m);
 	}
 	
 	public boolean desferMoviment(Moviment m) {
-		if (this.moviments.remove(m)) return true;
-		else return false;
+		return this.moviments.remove(m);
 	}
 	
 	public String toString() {

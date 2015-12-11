@@ -17,8 +17,10 @@ public class Continental {
 		System.out.println(joc.toStringMoviments());
 	}
 	
+	//Atributs
 	private Taulell taulell;
 	private Magatzem_ruta moviments;
+	
 	//Tipus de caselles
 	public static final int BUIT = 0;
 	public static final int PLENA = 1;
@@ -33,8 +35,8 @@ public class Continental {
 	public static final int [][] solucio = {
 			{-1,-1,0,0,0,-1-1},
 			{-1,-1,0,0,0,-1-1},
-			  {0,0,0,0,0,0,0},
 			  {0,0,0,1,0,0,0},
+			  {0,0,0,0,0,0,0},
 			  {0,0,0,0,0,0,0},
 			{-1,-1,0,0,0,-1-1},
 			{-1,-1,0,0,0,-1-1}
@@ -60,25 +62,18 @@ public class Continental {
 		}
 	}
 	
-	//Getter
+	//Getters
 	public Taulell getTaulell(){return taulell;}
 	
+	public int getMida(){return mida;}
+	
+	public int[] getDireccions(){return direccions;}
+	
 	public boolean casellaValida(int x, int y) {
-		if (this.taulell.getContingutPos(x, y) == NULA) return false;
-		if (this.taulell.getContingutPos(x, y) == BUIT) return false;
-		else return true;
+		if (this.taulell.getContingutPos(x, y) == PLENA) return true;
+		else return false;
 	}
 	
-	public int possibleDireccio(int i, int j, int k) {
-		if (i < 0 || i > mida-1 || j < 0 || j > mida-1) return -1;
-		
-		if (k == AMUNT && taulell.getContingutPos(i-1, j) == PLENA && taulell.getContingutPos(i-2, j) == BUIT) return AMUNT;
-		if (k == AVALL && taulell.getContingutPos(i+1, j) == PLENA && taulell.getContingutPos(i+2, j) == BUIT) return AVALL;
-		if (k == ESQUERRA && taulell.getContingutPos(i, j-1) == PLENA && taulell.getContingutPos(i, j-2) == BUIT) return ESQUERRA;
-		if (k == DRETA && taulell.getContingutPos(i, j+1) == PLENA && taulell.getContingutPos(i, j+2) == BUIT) return DRETA;
-		
-		return 0;
-	}
 	
 	public String toString() {
 		String resultat = "";
@@ -97,65 +92,15 @@ public class Continental {
 		return this.moviments.toString();
 	}
 	
-	public boolean afegirMoviment(int direccio, int i, int j) throws Exception {
-		Moviment m = null;
-		if (direccio == AMUNT) {
-			Posicio pI = new Posicio(i,j);
-			Posicio pE = new Posicio(i-1,j);
-			Posicio pF = new Posicio(i-2,j);
-			m = new Moviment(pI,pF,pE);
-		}
-		else if (direccio == AVALL) {
-			Posicio pI = new Posicio(i,j);
-			Posicio pE = new Posicio(i+1,j);
-			Posicio pF = new Posicio(i+2,j);
-			m = new Moviment(pI,pF,pE);
-		}
-		else if (direccio == ESQUERRA) {
-			Posicio pI = new Posicio(i,j);
-			Posicio pE = new Posicio(i,j-1);
-			Posicio pF = new Posicio(i,j-2);
-			m = new Moviment(pI,pF,pE);
-		}
-		else { //DRETA
-			Posicio pI = new Posicio(i,j);
-			Posicio pE = new Posicio(i,j+1);
-			Posicio pF = new Posicio(i,j+2);
-			m = new Moviment(pI,pF,pE);
-		}
+	public boolean afegirMoviment(Moviment m) throws Exception {
 		this.taulell.mouFitxa(m,1);
 		if (m == null) throw new Exception("No es pot afegir el moviment.");
-		int c = this.moviments.getMag().size();
-		System.out.println((c+1) +". " +  m.toString());
+		//int c = this.moviments.getMag().size();
+		//System.out.println((c+1) +". " +  m.toString());
 		return this.moviments.afegeixMoviment(m);
 	}
 	
-	public boolean desferMoviment(int direccio, int i, int j) throws Exception {
-		Moviment m = null;
-		if (direccio == AMUNT) {
-			Posicio pI = new Posicio(i,j);
-			Posicio pE = new Posicio(i-1,j);
-			Posicio pF = new Posicio(i-2,j);
-			m = new Moviment(pI,pF,pE);
-		}
-		else if (direccio == AVALL) {
-			Posicio pI = new Posicio(i,j);
-			Posicio pE = new Posicio(i+1,j);
-			Posicio pF = new Posicio(i+2,j);
-			m = new Moviment(pI,pF,pE);
-		}
-		else if (direccio == ESQUERRA) {
-			Posicio pI = new Posicio(i,j);
-			Posicio pE = new Posicio(i,j-1);
-			Posicio pF = new Posicio(i,j-2);
-			m = new Moviment(pI,pF,pE);
-		}
-		else { //DRETA
-			Posicio pI = new Posicio(i,j);
-			Posicio pE = new Posicio(i,j+1);
-			Posicio pF = new Posicio(i,j+2);
-			m = new Moviment(pI,pF,pE);
-		}
+	public boolean desferMoviment(Moviment m) throws Exception {
 		this.taulell.mouFitxa(m,2);
 		return this.moviments.desferMoviment(m);
 	}
@@ -167,5 +112,53 @@ public class Continental {
 			}
 		}
 		return true;
+	}
+
+	public Moviment possibleMoviment(int i, int j, int direccio) {
+		Moviment m = null;
+		if (direccio == Continental.AMUNT) {
+			if (AMUNT == possibleDireccio(i,j,direccio)) {
+				Posicio pI = new Posicio(i,j);
+				Posicio pE = new Posicio(i-1,j);
+				Posicio pF = new Posicio(i-2,j);
+				m = new Moviment(pI,pE,pF);
+			}
+		}
+		else if (direccio == AVALL) {
+			if (AVALL == possibleDireccio(i,j,direccio)) {
+			Posicio pI = new Posicio(i,j);
+			Posicio pE = new Posicio(i+1,j);
+			Posicio pF = new Posicio(i+2,j);
+			m = new Moviment(pI,pE,pF);
+			}
+		}
+		else if (direccio == ESQUERRA) {
+			if (ESQUERRA == possibleDireccio(i,j,direccio)) {
+				Posicio pI = new Posicio(i,j);
+				Posicio pE = new Posicio(i,j-1);
+				Posicio pF = new Posicio(i,j-2);
+				m = new Moviment(pI,pE,pF);
+			}
+		}
+		else if (direccio == DRETA){ //DRETA
+			if (DRETA == possibleDireccio(i,j,direccio)) {
+				Posicio pI = new Posicio(i,j);
+				Posicio pE = new Posicio(i,j+1);
+				Posicio pF = new Posicio(i,j+2);
+				m = new Moviment(pI,pE,pF);
+			}
+		}
+		return m;
+	}
+	
+	public int possibleDireccio(int i, int j, int k) {
+		if (i < 0 || i > mida-1 || j < 0 || j > mida-1) return -1;
+		
+		if (k == AMUNT && taulell.getContingutPos(i-1, j) == PLENA && taulell.getContingutPos(i-2, j) == BUIT) return AMUNT;
+		else if (k == AVALL && taulell.getContingutPos(i+1, j) == PLENA && taulell.getContingutPos(i+2, j) == BUIT) return AVALL;
+		else if (k == ESQUERRA && taulell.getContingutPos(i, j-1) == PLENA && taulell.getContingutPos(i, j-2) == BUIT) return ESQUERRA;
+		else if (k == DRETA && taulell.getContingutPos(i, j+1) == PLENA && taulell.getContingutPos(i, j+2) == BUIT) return DRETA;
+		
+		return 0;
 	}
 }

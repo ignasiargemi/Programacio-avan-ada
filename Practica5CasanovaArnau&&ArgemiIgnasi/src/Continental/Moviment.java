@@ -5,7 +5,7 @@ public class Moviment {
 	private Posicio posFinal;
 	private Posicio posEliminada;
 	
-	public Moviment(Posicio pI, Posicio pF, Posicio pE) {
+	public Moviment(Posicio pI, Posicio pE, Posicio pF) {
 		this.posIncial = pI;
 		this.posFinal = pF;
 		this.posEliminada = pE;
