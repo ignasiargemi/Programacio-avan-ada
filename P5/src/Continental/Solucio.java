@@ -26,4 +26,9 @@ public class Solucio {
 		}
 		return res;
 	}
+
+	public Moviment getUltimMoviment() {
+		if (this.moviments.isEmpty()) return null;
+		return this.moviments.get(this.moviments.size()-1);
+	}
 }

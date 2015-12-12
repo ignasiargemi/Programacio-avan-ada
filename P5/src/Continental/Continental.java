@@ -87,9 +87,9 @@ public class Continental {
 						Moviment m = possibleMoviment(i,j,direccions[k]);
 						if (m != null) {
 							//Registar moviment
-							moviments.afegirMoviment(m);
 							mouFitxa(m,1);
-							//System.out.println(nivell);
+							moviments.afegirMoviment(m);
+							System.out.println(nivell + " " + m.toString());
 							System.out.println(toString());
 							//Crida recursiva
 							if (nivell == 31) {
@@ -102,13 +102,17 @@ public class Continental {
 									}
 								}
 							}
-							else {
-								trobarSolucions(nivell+1,sol_cont);
+							if (trobarSolucions(nivell+1,sol_cont)){
+								
+								
+								return true;
 							}
-							//desfer moviment i seguir amb la cerca
-							mouFitxa(m,2);
-							moviments.desferMoviment();
-							
+							else {
+								//desfer moviment i seguir amb la cerca
+								System.out.println("Desfaig " + m.toString());
+								System.out.println(toString());
+								desferMoviment();
+							}
 						}
 					}
 				}
@@ -117,7 +121,14 @@ public class Continental {
 		return false;
     }
 	
-	public Moviment possibleMoviment(int i, int j, int direccio) {
+	private void desferMoviment() throws Exception {
+		Moviment m = moviments.getUltimMoviment();
+		System.out.println("ultim "+m.toString());
+		mouFitxa(m,2);
+		moviments.desferMoviment();
+	}
+
+	private Moviment possibleMoviment(int i, int j, int direccio) {
 		Moviment m = null;
 		if (direccio == Continental.AMUNT) {
 			if (AMUNT == possibleDireccio(i,j,direccio)) {
@@ -129,10 +140,10 @@ public class Continental {
 		}
 		else if (direccio == AVALL) {
 			if (AVALL == possibleDireccio(i,j,direccio)) {
-			Coordenada pI = new Coordenada(i,j);
-			Coordenada pE = new Coordenada(i+1,j);
-			Coordenada pF = new Coordenada(i+2,j);
-			m = new Moviment(pI,pE,pF);
+				Coordenada pI = new Coordenada(i,j);
+				Coordenada pE = new Coordenada(i+1,j);
+				Coordenada pF = new Coordenada(i+2,j);
+				m = new Moviment(pI,pE,pF);
 			}
 		}
 		else if (direccio == ESQUERRA) {
@@ -166,11 +177,11 @@ public class Continental {
 	}
 	
 	private int getContingutPos(int i, int j) {
-		if (i < 0 || i >= mida || j < 0 || j >= mida) return -10;
+		if (i < 0 || i >= mida || j < 0 || j >= mida) return NULA;
 		else return taulell[i][j];
 	}
 
-	public boolean casellaValida(int x, int y) {
+	private boolean casellaValida(int x, int y) {
 		if (taulell[x][y] == PLENA) return true;
 		else return false;
 	}
@@ -191,7 +202,7 @@ public class Continental {
 			taulell[m.getPosEliminada().getPosX()][m.getPosEliminada().getPosY()] = BUIDA;
 			taulell[m.getPosFinal().getPosX()][m.getPosFinal().getPosY()] = PLENA;
 		}
-		else {//Desfer moviemnt
+		else if (accio == 2){//Desfer moviemnt
 			taulell[m.getPosIncial().getPosX()][m.getPosIncial().getPosY()] = PLENA;
 			taulell[m.getPosEliminada().getPosX()][m.getPosEliminada().getPosY()] = PLENA;
 			taulell[m.getPosFinal().getPosX()][m.getPosFinal().getPosY()] = BUIDA;
