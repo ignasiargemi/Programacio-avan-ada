@@ -1,10 +1,10 @@
 package Continental;
 
-public class Posicio {
+public class Coordenada {
 	private int posX;
 	private int posY;
 	
-	public Posicio(int x, int y) {
+	public Coordenada(int x, int y) {
 		this.posX = x;
 		this.posY = y;
 	}

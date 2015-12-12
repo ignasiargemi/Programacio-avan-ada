@@ -35,8 +35,8 @@ public class Continental {
 	public static final int [][] solucio = {
 			{-1,-1,0,0,0,-1-1},
 			{-1,-1,0,0,0,-1-1},
-			  {0,0,0,1,0,0,0},
 			  {0,0,0,0,0,0,0},
+			  {0,0,0,1,0,0,0},
 			  {0,0,0,0,0,0,0},
 			{-1,-1,0,0,0,-1-1},
 			{-1,-1,0,0,0,-1-1}
@@ -118,33 +118,33 @@ public class Continental {
 		Moviment m = null;
 		if (direccio == Continental.AMUNT) {
 			if (AMUNT == possibleDireccio(i,j,direccio)) {
-				Posicio pI = new Posicio(i,j);
-				Posicio pE = new Posicio(i-1,j);
-				Posicio pF = new Posicio(i-2,j);
+				Coordenada pI = new Coordenada(i,j);
+				Coordenada pE = new Coordenada(i-1,j);
+				Coordenada pF = new Coordenada(i-2,j);
 				m = new Moviment(pI,pE,pF);
 			}
 		}
 		else if (direccio == AVALL) {
 			if (AVALL == possibleDireccio(i,j,direccio)) {
-			Posicio pI = new Posicio(i,j);
-			Posicio pE = new Posicio(i+1,j);
-			Posicio pF = new Posicio(i+2,j);
+			Coordenada pI = new Coordenada(i,j);
+			Coordenada pE = new Coordenada(i+1,j);
+			Coordenada pF = new Coordenada(i+2,j);
 			m = new Moviment(pI,pE,pF);
 			}
 		}
 		else if (direccio == ESQUERRA) {
 			if (ESQUERRA == possibleDireccio(i,j,direccio)) {
-				Posicio pI = new Posicio(i,j);
-				Posicio pE = new Posicio(i,j-1);
-				Posicio pF = new Posicio(i,j-2);
+				Coordenada pI = new Coordenada(i,j);
+				Coordenada pE = new Coordenada(i,j-1);
+				Coordenada pF = new Coordenada(i,j-2);
 				m = new Moviment(pI,pE,pF);
 			}
 		}
 		else if (direccio == DRETA){ //DRETA
 			if (DRETA == possibleDireccio(i,j,direccio)) {
-				Posicio pI = new Posicio(i,j);
-				Posicio pE = new Posicio(i,j+1);
-				Posicio pF = new Posicio(i,j+2);
+				Coordenada pI = new Coordenada(i,j);
+				Coordenada pE = new Coordenada(i,j+1);
+				Coordenada pF = new Coordenada(i,j+2);
 				m = new Moviment(pI,pE,pF);
 			}
 		}

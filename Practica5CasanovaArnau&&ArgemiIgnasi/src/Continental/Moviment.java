@@ -1,25 +1,25 @@
 package Continental;
 
 public class Moviment {
-	private Posicio posIncial;
-	private Posicio posFinal;
-	private Posicio posEliminada;
+	private Coordenada posIncial;
+	private Coordenada posFinal;
+	private Coordenada posEliminada;
 	
-	public Moviment(Posicio pI, Posicio pE, Posicio pF) {
+	public Moviment(Coordenada pI, Coordenada pE, Coordenada pF) {
 		this.posIncial = pI;
 		this.posFinal = pF;
 		this.posEliminada = pE;
 	}
 
-	public Posicio getPosIncial() {
+	public Coordenada getPosIncial() {
 		return posIncial;
 	}
 
-	public Posicio getPosFinal() {
+	public Coordenada getPosFinal() {
 		return posFinal;
 	}
 
-	public Posicio getPosEliminada() {
+	public Coordenada getPosEliminada() {
 		return posEliminada;
 	}
 	
