@@ -4,11 +4,13 @@ public class Continental {
 	//Main
 	public static void main(String[] args) throws Exception {
 		Continental joc = new Continental();
+		System.out.println("Taulell inicial");
 		System.out.print(joc.toString());
 	
         int n = 2; //Número de solucions
         if (joc.trobarNSolucions(n)) {
 			System.out.println();
+			System.out.println("Taulell final");
 			System.out.print(joc.toString());
 			System.out.println();
 		    System.out.println("Execució finalitzada");
@@ -57,16 +59,16 @@ public class Continental {
 		return trobarSolucio(n);
 	}
 
-	public boolean trobarSolucio(int sol_cont) throws Exception {
+	public boolean trobarSolucio(int comptadorSolucions) throws Exception {
 		//Comprovem si és solució
 		if (esSolucio()){
 	    	System.out.println();
 			System.out.println("Solució "+ comptador);
 			System.out.println("***************");
-			System.out.println("   Inicial-Eliminada-Final");
+			System.out.println("    Inicial-Eliminada-Final");
 			System.out.print(moviments.toString());
 			
-	    	if(comptador==sol_cont) return true;
+	    	if(comptador==comptadorSolucions) return true;
 	    	else {
 	    		comptador++;
 	            return false;
@@ -84,7 +86,7 @@ public class Continental {
 	                    int novaY = coord[1];
 	        	        if (esMovimentValid(x, y, novaX, novaY)) {
 	        	        	ferMoviment(x, y, novaX, novaY); //Afegim el moviment
-	        	        	if (trobarSolucio(sol_cont)) return true; // Crida recursiva
+	        	        	if (trobarSolucio(comptadorSolucions)) return true; // Crida recursiva
 	        	            else desferMoviment(x, y, direccio); //Desfem el moviment
 	        	        }
 	                }

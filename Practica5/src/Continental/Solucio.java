@@ -12,9 +12,9 @@ public class Solucio {
     
 	//Afegeix el moviment a la llista
 	public void ferMoviment(int x, int y, int novaX, int novaY) {
-    	int menjaX = (x + novaX) / 2;
-    	int menjaY = (y + novaY) / 2;
-		moviments.add(new Moviment(new Coordenada(x,y), new Coordenada(novaX,novaY), new Coordenada(menjaX,menjaY)));
+    	int eliminadaX = (x + novaX)/2;
+    	int eliminadaY = (y + novaY)/2;
+		moviments.add(new Moviment(new Coordenada(x,y), new Coordenada(novaX,novaY), new Coordenada(eliminadaX,eliminadaY)));
 	}
 	
 	//Esborra l'últim moviments de la llista
