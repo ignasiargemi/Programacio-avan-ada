@@ -80,7 +80,7 @@ public class Continental {
 	}
 	
 	private boolean trobarSolucions(int nivell, int sol_cont) throws Exception {
-		if (nivell == 31) {
+		
 			if (esSolucio()) {
 				if (contador == sol_cont) return true;
 				else {
@@ -89,7 +89,7 @@ public class Continental {
 					return false;
 				}
 			}
-		}
+
 		for (int i = 0; i < mida; ++i) { //Files
 			for (int j = 0; j < mida; ++j) { //Columnes
 				if (casellaValida(i, j)) {

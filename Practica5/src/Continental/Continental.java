@@ -6,12 +6,12 @@ public class Continental {
 		Continental joc = new Continental();
 		System.out.print(joc.toString());
 	
-        int n = 2; //NÃºmero de solucions
+        int n = 2; //Número de solucions
         if (joc.trobarNSolucions(n)) {
 			System.out.println();
 			System.out.print(joc.toString());
 			System.out.println();
-		    System.out.println("ExecuciÃ³ finalitzada");
+		    System.out.println("Execució finalitzada");
         }
 	}	
     
@@ -46,7 +46,7 @@ public class Continental {
 	private int comptador = 1; //Comptador de solucions
 
 
-	//CreaciÃ³ del joc.
+	//Creació del joc.
 	public Continental(){
 		this.moviments = new Solucio();
 		this.taulell = new int[mida][mida];
@@ -58,10 +58,10 @@ public class Continental {
 	}
 
 	public boolean trobarSolucio(int sol_cont) throws Exception {
-		//Comprovem si Ã©s soluciÃ³
+		//Comprovem si és solució
 		if (esSolucio()){
 	    	System.out.println();
-			System.out.println("SOLUCIï¿½ "+ comptador);
+			System.out.println("Solució "+ comptador);
 			System.out.println("***************");
 			System.out.println("   Inicial-Eliminada-Final");
 			System.out.print(moviments.toString());
@@ -77,7 +77,7 @@ public class Continental {
 			for (int y = 0; y < mida; y++)	{// per totes les columnes
 				if (esCasellaOcupada(x, y)) {
 					for (int k = 0; k < direccions.length; ++k)	{ // per totes les direccions
-	                	// Calcular nova posiciï¿½ al fer el salt
+	                	// Calcular nova posició al fer el salt
 	                	int direccio = direccions[k];
 	                	int [] coord = getNovesCoord(x,y,direccio);
 	                	int novaX = coord[0];
@@ -118,7 +118,7 @@ public class Continental {
 		}
 	}
 	
-	//Comprova si el taulell estÃ  solucionat
+	//Comprova si el taulell està solucionat
     private boolean esSolucio(){
     	for (int i = 0; i < solucio.length; ++i) {
     		for (int j = 0; j < solucio.length; ++j) {
@@ -128,20 +128,20 @@ public class Continental {
     	return true;
 	}
     
-    //Aquesta funciÃ³ comprova si el moviment Ã©s vÃ lid.
+    //Aquesta funció comprova si el moviment Ã©s vÃ lid.
 	private boolean esMovimentValid(int x, int y, int novaX, int novaY) throws Exception {
         if (foraLimits(novaX,novaY)) return false;
         if (!esCasellaOcupada((x+novaX)/2,(y+novaY)/2) || !esCasellaBuida(novaX,novaY)) return false;
         else return true;
     }
 	
-	//Aquesta funciÃ³ comrova si les coordenades estan fora dels lÃ­mits del taulell.
+	//Aquesta funció comrova si les coordenades estan fora dels lÃ­mits del taulell.
 	private boolean foraLimits(int fila, int columna) throws Exception{
 		return ((fila < 0 || fila >= this.taulell.length) || (columna < 0 || columna >= this.taulell.length)); 
 			
 	}
 
-	//Aquesta funciÃ³ modifica el taulell i l'afegeix a la llista.
+	//Aquesta funció modifica el taulell i l'afegeix a la llista.
     private void ferMoviment(int x, int y, int novaX, int novaY) {
         omplirCasella(novaX, novaY);
         buidarCasella(x, y);
@@ -149,7 +149,7 @@ public class Continental {
     	moviments.ferMoviment(x, y, novaX, novaY); 
     }
 
-    //Aquesta funciÃ³ desfa el moviment i el treu de la llista.
+    //Aquesta funció desfa el moviment i el treu de la llista.
     private void desferMoviment(int x, int y, int direccio) throws Exception {
     	int[] coord = getNovesCoord(x,y,direccio);
         int novaX = coord[0];
@@ -171,12 +171,12 @@ public class Continental {
     	return coord;
     }
 
-    //Modifica la casella perquÃ¨ sigui BUIDA
+    //Modifica la casella perquè sigui BUIDA
     private void buidarCasella(int x, int y) {this.taulell[x][y] = BUIDA;}
-    //Modifica la casella perquÃ¨ sigui PLENA
+    //Modifica la casella perquè sigui PLENA
     private void omplirCasella(int x, int y) {this.taulell[x][y] = PLENA;}
-    //Comprova si la casella Ã©s PLENA
+    //Comprova si la casella és PLENA
     private boolean esCasellaOcupada(int x, int y) {return this.taulell[x][y] == PLENA;}    
-    //Comprova si la casella Ã©s BUIDA
+    //Comprova si la casella és BUIDA
     private boolean esCasellaBuida(int x, int y) {return this.taulell[x][y] == BUIDA;}
 }

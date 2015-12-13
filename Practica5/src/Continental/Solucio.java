@@ -17,7 +17,7 @@ public class Solucio {
 		moviments.add(new Moviment(new Coordenada(x,y), new Coordenada(novaX,novaY), new Coordenada(menjaX,menjaY)));
 	}
 	
-	//Esborra l'Ãºltim moviments de la llista
+	//Esborra l'últim moviments de la llista
 	public Moviment desferUltimMoviment() throws Exception{
 		if (moviments.isEmpty()) throw new Exception ("no hi ha cap moviment");
 		Moviment m = moviments.get(moviments.size()-1);
