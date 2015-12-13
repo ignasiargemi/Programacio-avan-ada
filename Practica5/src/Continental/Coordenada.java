@@ -1,31 +1,27 @@
 package Continental;
 
 public class Coordenada {
-	private int posX;
-	private int posY;
+	//Atributs
+	private int coordX;
+	private int coordY;
 	
+	//Creadora
 	public Coordenada(int x, int y) {
-		this.posX = x;
-		this.posY = y;
+		this.coordX = x;
+		this.coordY = y;
 	}
 
+	//Getters
 	public int getPosX() {
-		return posX;
-	}
-
-	public void setPosX(int posX) {
-		this.posX = posX;
+		return coordX;
 	}
 
 	public int getPosY() {
-		return posY;
+		return coordY;
 	}
 
-	public void setPosY(int posY) {
-		this.posY = posY;
-	}
-
+	//To String
 	public String toString() {
-		return "[" + posX + ", " + posY + "]";
+		return "[" + coordX + ", " + coordY + "]";
 	}
 }

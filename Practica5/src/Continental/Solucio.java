@@ -2,61 +2,35 @@ package Continental;
 import java.util.ArrayList;
 
 public class Solucio {
+	//Llista de moviments
+    private ArrayList<Moviment> moviments;
 
-    private ArrayList<Moviment> historial;
-
-	Solucio(){
-		this.historial = new ArrayList<Moviment>();
+    //Creadora
+	public Solucio(){
+		this.moviments = new ArrayList<Moviment>();
 	}
     
-	public int getMoviments () {
-		return historial.size();
-	}
-	
+	//Afegeix el moviment a la llista
 	public void ferMoviment(int x, int y, int novaX, int novaY) {
     	int menjaX = (x + novaX) / 2;
     	int menjaY = (y + novaY) / 2;
-		historial.add(new Moviment(new Coordenada(x,y), new Coordenada(novaX,novaY), new Coordenada(menjaX,menjaY)));
+		moviments.add(new Moviment(new Coordenada(x,y), new Coordenada(novaX,novaY), new Coordenada(menjaX,menjaY)));
 	}
 	
-	/**
-	 * 
-	 * @return null quan no hi ha moviments
-	 */
-	public Moviment obtenirUltimMoviment(){
-		if (historial.isEmpty())
-			return null;
-		
-		return historial.get(historial.size()-1);
-	}
-
-	/**
-	 * @return l'ultim moviment
-	 * @throws Exception
-	 */
+	//Esborra l'últim moviments de la llista
 	public Moviment desferUltimMoviment() throws Exception{
-		if (historial.isEmpty())
-			throw new Exception ("Error desfer �ltim moviment:  no hi ha cap moviment");
-		Moviment m = obtenirUltimMoviment();
-		historial.remove(m);
+		if (moviments.isEmpty()) throw new Exception ("no hi ha cap moviment");
+		Moviment m = moviments.get(moviments.size()-1);
+		moviments.remove(m);
 		return m;
 	}
 	
-	public ArrayList<Moviment> getllistaMoviments(){
-		return this.historial;
+	//To String
+	public String toString() {
+		String res = "";
+		for (int i = 0; i < this.moviments.size(); ++i) {
+			res += (i+1)+ ". " + this.moviments.get(i).toString() + "\n";
+		}
+		return res;
 	}
-
-	public void imprimir(){
-		
-        int i=1;
-        for (Moviment c: getllistaMoviments()) {
-            System.out.println(
-            		String.format("%d. Inici:(%s,%s)\tFinal:(%s,%s)\tMenjada:(%s,%s)"
-            		, i++
-            		, c.getCoordIniciX(),c.getCoordIniciY()
-					, c.getCoordFinalX(),c.getCoordFinalY()
-					, c.getCoordMenjadaX(),c.getCoordMenjadaY()
-			));
-        }
-    }	
 }

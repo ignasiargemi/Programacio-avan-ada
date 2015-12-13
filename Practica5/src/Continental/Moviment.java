@@ -1,49 +1,45 @@
 package Continental;
 public class Moviment {
-	
-	private Coordenada coordInici;
-	private Coordenada coordFinal;
-	private Coordenada coordMenjada;
+	//Atributs
+	private Coordenada casellaInici;
+	private Coordenada casellaFinal;
+	private Coordenada casellaEliminada;
 
-	public Coordenada getCoordInici() {
-		return coordInici;
+	//Creadora
+	public Moviment(Coordenada inicial, Coordenada fi, Coordenada eliminada){
+		this.casellaInici = inicial;
+		this.casellaFinal = fi;
+		this.casellaEliminada = eliminada;
 	}
 
-	public Coordenada getCoordFinal() {
-		return coordFinal;
-	}
-
-	public Coordenada getCoordMenjada() {
-		return coordMenjada;
-	}
-	
-	public Moviment(Coordenada ini, Coordenada fin, Coordenada menja){
-		this.coordInici = ini;
-		this.coordFinal = fin;
-		this.coordMenjada = menja;
-	}
-
+	//Getters
 	public int getCoordIniciX() {
-		return coordInici.getPosX();
+		return casellaInici.getPosX();
 	}
 	
 	public int getCoordIniciY() {
-		return coordInici.getPosY();
+		return casellaInici.getPosY();
 	}
 
 	public int getCoordFinalX() {
-		return coordFinal.getPosX();
+		return casellaFinal.getPosX();
 	}
 	
 	public int getCoordFinalY() {
-		return coordFinal.getPosY();
+		return casellaFinal.getPosY();
 	}
 
 	public int getCoordMenjadaX() {
-		return coordMenjada.getPosX();
+		return casellaEliminada.getPosX();
 	}
 	
 	public int getCoordMenjadaY() {
-		return coordMenjada.getPosY();
+		return casellaEliminada.getPosY();
+	}
+	
+	//To String
+	public String toString() {
+		return "(" + this.casellaInici.toString() + ", " + this.casellaEliminada.toString() + ", " 
+				+ this.casellaFinal.toString() + ")";
 	}
 }
