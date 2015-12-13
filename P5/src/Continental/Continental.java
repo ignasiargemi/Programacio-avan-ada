@@ -80,6 +80,16 @@ public class Continental {
 	}
 	
 	private boolean trobarSolucions(int nivell, int sol_cont) throws Exception {
+		if (nivell == 31) {
+			if (esSolucio()) {
+				if (contador == sol_cont) return true;
+				else {
+					System.out.println(moviments.toString());
+					++contador;
+					return false;
+				}
+			}
+		}
 		for (int i = 0; i < mida; ++i) { //Files
 			for (int j = 0; j < mida; ++j) { //Columnes
 				if (casellaValida(i, j)) {
@@ -87,24 +97,11 @@ public class Continental {
 						Moviment m = possibleMoviment(i,j,direccions[k]);
 						if (m != null) {
 							//Registar moviment
-							mouFitxa(m,1);
-							moviments.afegirMoviment(m);
+							afegirMoviment(m);
 							System.out.println(nivell + " " + m.toString());
 							System.out.println(toString());
 							//Crida recursiva
-							if (nivell == 31) {
-								if (esSolucio()) {
-									if (contador == sol_cont) return true;
-									else {
-										System.out.println(moviments.toString());
-										++contador;
-										return false;
-									}
-								}
-							}
 							if (trobarSolucions(nivell+1,sol_cont)){
-								
-								
 								return true;
 							}
 							else {
@@ -121,6 +118,11 @@ public class Continental {
 		return false;
     }
 	
+	private void afegirMoviment(Moviment m) throws Exception {
+		mouFitxa(m,1);
+		moviments.afegirMoviment(m);
+	}
+
 	private void desferMoviment() throws Exception {
 		Moviment m = moviments.getUltimMoviment();
 		System.out.println("ultim "+m.toString());
@@ -166,7 +168,7 @@ public class Continental {
 	}
 	
 	private int possibleDireccio(int i, int j, int k) {
-		if (i < 0 || i > mida-1 || j < 0 || j > mida-1) return -1;
+		if (i < 0 || i > mida-1 || j < 0 || j > mida-1) return NULA;
 		
 		if (k == AMUNT && getContingutPos(i-1, j) == PLENA && getContingutPos(i-2, j) == BUIDA) return AMUNT;
 		else if (k == AVALL && getContingutPos(i+1, j) == PLENA && getContingutPos(i+2, j) == BUIDA) return AVALL;
